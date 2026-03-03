@@ -1,4 +1,5 @@
 import type { AuthAdapter } from "../interfaces/adapter.js";
+import { prisma } from "../lib/prisma.js";
 
 export const prismaAdapter = (prisma: any): AuthAdapter => ({
   createUser: async (data) => {
@@ -6,5 +7,17 @@ export const prismaAdapter = (prisma: any): AuthAdapter => ({
   },
   findUserByEmail: async (email) => {
     return await prisma.user.findFirst({ where: { email } });
+  },
+  findUserById: async (userId) => {
+    return await prisma.user.findFirst({ where: { id: userId } });
+  },
+  updatePassword: async (userId, newPassword) => {
+    return await prisma.user.update({
+      where: { id: userId },
+      data: { password: newPassword },
+    });
+  },
+  deleteUser: async (userId) => {
+    return await prisma.user.delete({ where: { id: userId } });
   },
 });
