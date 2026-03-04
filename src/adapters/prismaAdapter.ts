@@ -1,5 +1,4 @@
 import type { AuthAdapter } from "../interfaces/adapter.js";
-import { prisma } from "../lib/prisma.js";
 
 export const prismaAdapter = (prisma: any): AuthAdapter => ({
   createUser: async (data) => {

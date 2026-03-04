@@ -5,16 +5,33 @@ import { prisma } from "./lib/prisma.js";
 import { dbConnect } from "./lib/mongo.js";
 import { mongoDBAdaptet } from "./adapters/mongoDBAdapter.js";
 import UserModel from "./model/user.js";
+import { createClient, type RedisClientType } from "redis";
 
 // if using mongodb
-// dbConnect();
+dbConnect();
 
 const app = express();
 app.use(express.json());
 
+const redisClient: RedisClientType = createClient();
+
+redisClient.on("error", (error) =>
+  console.error("[Redis client error]", error),
+);
+
+(async () => {
+  try {
+    await redisClient.connect();
+    console.log("Connected to Redis");
+  } catch (error) {
+    console.error("Failed to connect to Redis:", error);
+  }
+})();
+
 const auth = new Tokenly({
-  adapter: prismaAdapter(prisma),
-  // adapter: mongoDBAdaptet(UserModel),
+  // adapter: prismaAdapter(prisma),
+  adapter: mongoDBAdaptet(UserModel),
+  redis: redisClient,
 });
 
 app.use("/api/v1/auth", auth.router());

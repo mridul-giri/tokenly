@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import type { TokenlyConfig } from "../core/tokenly.js";
-import { deleteToken, setNewToken } from "../redisCache.js";
+import { deleteToken, setNewToken } from "../redisService.js";
 import { generateToken } from "../utils/generateToken.js";
 import { hashPassword, verifyingPassword } from "../utils/password.js";
 import { validateEmailDomain } from "../utils/validateEmail.js";
@@ -78,7 +78,7 @@ export const login =
         res.status(401).json({ message: "Wrong password" });
       }
       const token = generateToken(findUser.id);
-      await setNewToken(findUser.id, token);
+      await setNewToken(findUser.id, token, config.redis);
       res.status(200).json({
         message: "Login Successful, Token is valid for 7 days",
         token,
@@ -136,7 +136,7 @@ export const logout =
         res.status(404).json({ message: "User not found" });
         return;
       }
-      await deleteToken(user.id);
+      await deleteToken(user.id, config.redis);
       res.status(200).json({ message: "Token deleted successfully" });
       return;
     } catch (error) {
@@ -162,7 +162,7 @@ export const deleteUser =
       if (!isPasswordValid) {
         res.status(401).json({ message: "Wrong password" });
       }
-      await deleteToken(user.id);
+      await deleteToken(user.id, config.redis);
       await config.adapter.deleteUser(user.id);
       res.status(200).json({ message: "User deleted successfully" });
       return;

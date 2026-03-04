@@ -1,19 +1,15 @@
 import type { NextFunction, Request, Response } from "express";
-import { connectRedisClient, redisClient } from "../redisCache.js";
-
-(async () => {
-  await connectRedisClient();
-})();
+import type { RedisClientType } from "redis";
 
 export const rateLimiter =
-  (limit: number, windowSecond: number) =>
+  (redis: RedisClientType, limit: number, windowSecond: number) =>
   async (req: Request, res: Response, next: NextFunction) => {
     const key = `rate:${req.path}:${req.ip}`;
     try {
-      const requests = await redisClient.incr(key);
+      const requests = await redis.incr(key);
 
       if (limit === requests) {
-        await redisClient.expire(key, windowSecond);
+        await redis.expire(key, windowSecond);
       }
 
       if (requests > limit) {

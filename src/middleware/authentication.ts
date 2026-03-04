@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { getToken } from "../redisCache.js";
+import { getToken } from "../redisService.js";
 import type { JwtPayload } from "../utils/generateToken.js";
 import type { TokenlyConfig } from "../core/tokenly.js";
 
@@ -40,7 +40,7 @@ export const authenticateToken =
       if (!decodeToken.sub) {
         res.status(401).json({ message: "Token missing subject" });
       }
-      const token = await getToken(decodeToken.sub);
+      const token = await getToken(decodeToken.sub, config.redis);
       if (!token || token != authHeader) {
         res
           .status(401)
