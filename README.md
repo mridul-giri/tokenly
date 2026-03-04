@@ -1,8 +1,13 @@
 # Tokenly
 
+[![npm version](https://img.shields.io/npm/v/tokenly.svg)](https://www.npmjs.com/package/tokenly)
+[![npm downloads](https://img.shields.io/npm/dm/tokenly.svg)](https://www.npmjs.com/package/tokenly)
+
 A plug-and-play authentication package for Express.js applications. Tokenly handles **user signup, login, logout, password management, and account deletion** out of the box — with built-in JWT authentication, Redis-backed token storage, and rate limiting.
 
 Supports both **MongoDB (Mongoose)** and **PostgreSQL (Prisma)** via a simple adapter pattern.
+
+📦 **npm**: [https://www.npmjs.com/package/tokenly](https://www.npmjs.com/package/tokenly)
 
 ---
 
