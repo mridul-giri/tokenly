@@ -1,0 +1,22 @@
+# Source files
+src/
+prisma/
+prisma.config.ts
+
+# Environment
+.env
+.env.example
+
+# Config
+tsconfig.json
+nodemon.json
+
+# Dev
+node_modules/
+.git/
+.gitignore
+
+# Lock files (consumers use their own)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

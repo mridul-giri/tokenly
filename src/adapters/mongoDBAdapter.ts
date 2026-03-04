@@ -1,6 +1,6 @@
 import type { AuthAdapter } from "../interfaces/adapter.js";
 
-export const mongoDBAdaptet = (userModel: any): AuthAdapter => ({
+export const mongoDBAdapter = (userModel: any): AuthAdapter => ({
   createUser: async (data) => {
     return await userModel.create(data);
   },

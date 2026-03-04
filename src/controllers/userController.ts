@@ -25,6 +25,7 @@ export const me =
       });
       return;
     } catch (error) {
+      console.error("[Me Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };
@@ -53,6 +54,7 @@ export const signup =
       res.status(201).json({ message: "Account created successfully." });
       return;
     } catch (error) {
+      console.error("[Signup Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };
@@ -91,6 +93,7 @@ export const login =
       });
       return;
     } catch (error) {
+      console.error("[Login Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };
@@ -123,6 +126,7 @@ export const changePassword =
       res.status(200).json({ message: "password changed" });
       return;
     } catch (error) {
+      console.error("[Change Password Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };
@@ -140,6 +144,7 @@ export const logout =
       res.status(200).json({ message: "Token deleted successfully" });
       return;
     } catch (error) {
+      console.error("[Logout Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };
@@ -167,6 +172,7 @@ export const deleteUser =
       res.status(200).json({ message: "User deleted successfully" });
       return;
     } catch (error) {
+      console.error("[Delete User Error]", error);
       res.status(500).json({ message: "Internal server error" });
     }
   };

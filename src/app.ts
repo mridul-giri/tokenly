@@ -3,7 +3,7 @@ import { Tokenly } from "./core/tokenly.js";
 import { prismaAdapter } from "./adapters/prismaAdapter.js";
 import { prisma } from "./lib/prisma.js";
 import { dbConnect } from "./lib/mongo.js";
-import { mongoDBAdaptet } from "./adapters/mongoDBAdapter.js";
+import { mongoDBAdapter } from "./adapters/mongoDBAdapter.js";
 import UserModel from "./model/user.js";
 import { createClient, type RedisClientType } from "redis";
 
@@ -30,7 +30,7 @@ redisClient.on("error", (error) =>
 
 const auth = new Tokenly({
   // adapter: prismaAdapter(prisma),
-  adapter: mongoDBAdaptet(UserModel),
+  adapter: mongoDBAdapter(UserModel),
   redis: redisClient,
 });
 

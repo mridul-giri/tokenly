@@ -1,34 +1,65 @@
 {
   "name": "tokenly",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/app.js",
+  "version": "1.0.1",
+  "description": "Plug-and-play authentication for Express.js with JWT, Redis token storage, and rate limiting. Supports MongoDB and Prisma.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mridul-giri/tokenly"
+  },
+  "bugs": {
+    "url": "https://github.com/mridul-giri/tokenly/issues"
+  },
+  "homepage": "https://github.com/mridul-giri/tokenly#readme",
   "scripts": {
     "build": "tsc -b",
     "start": "node dist/app.js",
-    "dev": "nodemon --watch src --ext ts --exec \"tsc && node dist/app.js\""
+    "dev": "nodemon --watch src --ext ts --exec \"tsc && node dist/app.js\"",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "auth",
+    "authentication",
+    "express",
+    "jwt",
+    "redis",
+    "mongodb",
+    "prisma",
+    "middleware",
+    "rate-limiting"
+  ],
+  "author": "Mridul Giri",
   "license": "ISC",
   "packageManager": "pnpm@10.27.0",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.4.2",
-    "@prisma/client": "^7.4.2",
-    "@types/express": "^5.0.6",
-    "@types/pg": "^8.18.0",
     "bcrypt": "^6.0.0",
-    "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.3",
-    "pg": "^8.19.0",
-    "redis": "^5.11.0"
+    "redis": "^5.11.0",
+    "@prisma/client": "^7.4.2",
+    "@prisma/adapter-pg": "^7.4.2",
+    "pg": "^8.19.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/pg": "^8.18.0",
+    "dotenv": "^17.3.1",
     "nodemon": "^3.1.14",
     "prisma": "^7.4.2",
     "typescript": "^5.9.3"
