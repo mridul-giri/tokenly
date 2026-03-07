@@ -8,7 +8,7 @@ import UserModel from "./model/user.js";
 import { createClient, type RedisClientType } from "redis";
 
 // if using mongodb
-dbConnect();
+// dbConnect();
 
 const app = express();
 app.use(express.json());
@@ -29,8 +29,8 @@ redisClient.on("error", (error) =>
 })();
 
 const auth = new Tokenly({
-  // adapter: prismaAdapter(prisma),
-  adapter: mongoDBAdapter(UserModel),
+  adapter: prismaAdapter(prisma),
+  // adapter: mongoDBAdapter(UserModel),
   redis: redisClient,
 });
 

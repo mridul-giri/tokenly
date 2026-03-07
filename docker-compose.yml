@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    image: tokenly
+    environment:
+      - DATABASE_URL=postgresql://postgres:mysecretpassword@postgres:5432/postgres
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - redis
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresdata:/var/lib/postgresql
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+volumes:
+  postgresdata:
+  redisdata:
