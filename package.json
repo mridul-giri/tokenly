@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mridul-giri/tokenly"
+    "url": "git+https://github.com/mridul-giri/tokenly.git"
   },
   "bugs": {
     "url": "https://github.com/mridul-giri/tokenly/issues"
