@@ -28,7 +28,7 @@ export class Tokenly {
       rateLimiter(this.config.redis, 5, 30),
       signup(this.config),
     );
-    router.get(
+    router.post(
       "/login",
       rateLimiter(this.config.redis, 5, 30),
       login(this.config),
