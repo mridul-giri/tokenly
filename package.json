@@ -1,6 +1,6 @@
 {
   "name": "tokenly",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Plug-and-play authentication for Express.js with JWT, Redis token storage, and rate limiting. Supports MongoDB and Prisma.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
